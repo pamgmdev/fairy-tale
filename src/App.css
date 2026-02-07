@@ -74,6 +74,7 @@ body, html {
 }
 
 /* Navegación */
+/* Navegación corregida: 100% opaca y por encima de todo */
 .navigation-footer {
   position: fixed;
   bottom: 0;
@@ -83,14 +84,28 @@ body, html {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  background: rgba(247, 246, 243, 0.9);
+  /* CAMBIO CLAVE: Quitar el 0.9 y poner color sólido */
+  background: #f7f6f3; 
+  /* Asegurar que tape las letras de fondo */
   z-index: 100;
 }
 
 .nav-btn {
   background: #e0d9c8;
   border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 10px 24px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 500;
+  color: #444;
+  white-space: nowrap;
+}
+
+/* Estilo para tu botón de Inicio/Home */
+.home-btn {
+  background: #bfa16b !important;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
