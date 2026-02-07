@@ -109,3 +109,54 @@ body, html {
   align-items: center;
   justify-content: center;
 }
+
+/* Contenedor del Slider flotante */
+.slider-container {
+  position: fixed;
+  bottom: 85px; /* Aparece justo encima del footer */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 450px;
+  background: #f7f6f3;
+  padding: 15px 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 101; /* Por encima del footer */
+  border: 1px solid #e0d9c8;
+}
+
+.page-slider {
+  width: 100%;
+  accent-color: #bfa16b; /* Color ocre del proyecto */
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.page-indicator {
+  font-family: 'Georgia', serif;
+  font-size: 0.9rem;
+  color: #8d4925;
+  font-weight: bold;
+}
+
+/* Grupo central de botones */
+.footer-center-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-btn {
+  background: #e0d9c8 !important;
+  color: #444 !important;
+}
+
+.search-btn.active {
+  background: #bfa16b !important;
+  color: white !important;
+}
