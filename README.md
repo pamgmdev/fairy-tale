@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# 📖 Interactive Flipbook Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Un libro digital interactivo y responsivo construido con **React** y **Vite**. Este proyecto permite visualizar capítulos de una historia con un efecto de cambio de página realista, incluyendo navegación avanzada y portadas dinámicas.
 
-Currently, two official plugins are available:
+## ✨ Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Efecto Flipbook:** Cambio de página fluido utilizando `react-pageflip`.
+* **Navegación Inteligente:** * Botones de navegación (Anterior/Siguiente).
+    * **Slider de búsqueda:** Una barra deslizable que aparece al pulsar la lupa para navegar rápidamente por todo el libro.
+    * **Acceso Rápido:** Botón de inicio para volver a la portada principal.
+* **Diseño Adaptable (Responsive):** Ajuste automático de tamaño para modo Retrato (móvil) y Paisaje (escritorio).
+* **Manejo de Portadas:** Lógica específica para `cover-1` (front) y `cover-2` (back) que garantiza que las tapas se vean centradas y aisladas del resto de páginas.
+* **Estilo de Código Estricto:** Configuración de ESLint con estilo **Allman** y alineación de propiedades para máxima legibilidad.
 
-## React Compiler
+## 🛠️ Tecnologías Utilizadas
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+* [React](https://reactjs.org/) - Biblioteca de UI.
+* [Vite](https://vitejs.dev/) - Herramienta de construcción ultra rápida.
+* [React-PageFlip](https://nodlik.github.io/react-pageflip/) - Motor del libro interactivo.
+* [TypeScript](https://www.typescriptlang.org/) - Tipado estático para un código robusto.
+* [Stylistic ESLint](https://eslint.style/) - Formateo de código personalizado.
 
-## Expanding the ESLint configuration
+## 🚀 Instalación y Uso
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone [https://github.com/tu-usuario/tu-repositorio.git](https://github.com/tu-usuario/tu-repositorio.git)
+    cd tu-repositorio
+    ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3.  **Iniciar el entorno de desarrollo:**
+    ```bash
+    npm run dev
+    ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4.  **Formatear el código (opcional):**
+    Para aplicar el estilo de llaves Allman y alineación de dos puntos:
+    ```bash
+    npx eslint . --fix
+    ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📂 Estructura de Imágenes
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+El proyecto carga las imágenes automáticamente desde la carpeta `src/assets/images/` siguiendo esta estructura:
+* `/covers/`: Contiene `cover-1` y `cover-2`.
+* `/chapter-0/`: Prólogo.
+* `/character-description/`: Información de personajes.
+* `/chapter-01/` a `/chapter-13/`: Capítulos principales.
+* `/final-chapter/`: Conclusión.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ✒️ Estilo de Código
+
+Este proyecto utiliza una configuración de ESLint específica:
+* **Brace Style:** Allman (llaves en la siguiente línea).
+* **Key Spacing:** Dos puntos alineados verticalmente en objetos.
+* **Functions:** Espacio obligatorio antes de los paréntesis: `function ()`.
+
+---
+Desarrollado con ❤️ Pam.

@@ -1,3 +1,27 @@
+/* Centrar el título de la biblioteca */
+.library-title {
+  text-align: center;
+  width: 100%;
+  margin: 2rem 0 1.5rem 0;
+  font-size: 2.2rem;
+  font-family: 'Georgia', serif;
+  color: #8d4925;
+}
+/* Miniatura de libro en la biblioteca */
+.book-thumbnail {
+  width: 140px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  background: #fff;
+  display: block;
+  margin: 0 auto;
+  transition: box-shadow 0.2s;
+}
+.book-thumbnail:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
 /* Limpieza base */
 * {
   box-sizing: border-box;
