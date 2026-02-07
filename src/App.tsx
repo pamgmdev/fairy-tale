@@ -1,9 +1,9 @@
-// @ts-nocheck
 import React, { useRef, useState, useEffect, useMemo } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import './App.css';
 
-function App() {
+function App () 
+{
   const bookRef = useRef(null);
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
   const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
@@ -11,8 +11,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSlider, setShowSlider] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
+  useEffect(() => 
+  {
+    const handleResize = () => 
+    {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
       setIsPortrait(window.innerHeight > window.innerWidth);
     };
@@ -29,7 +31,8 @@ function App() {
   const portada = Object.keys(coverModules).find(p => p.includes('cover-1'));
   const contraportada = Object.keys(coverModules).find(p => p.includes('cover-2'));
 
-  const paginasLibro = useMemo(() => {
+  const paginasLibro = useMemo(() => 
+  {
     const getOrderedImages = (modules) => Object.keys(modules)
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
       .map(path => modules[path].default);
@@ -46,7 +49,8 @@ function App() {
   const bookWidth = isPortrait ? windowSize.width * 0.9 : Math.min(windowSize.width * 0.45, 500);
   const bookHeight = isPortrait ? Math.min(windowSize.height * 0.7, 600) : Math.min(windowSize.height * 0.8, 600);
 
-  const goToStart = () => {
+  const goToStart = () => 
+  {
     bookRef.current?.pageFlip().turnToPage(0);
     setShowBook(false);
     setCurrentPage(0);
