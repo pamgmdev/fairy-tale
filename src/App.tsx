@@ -17,7 +17,7 @@ function App ()
   const [showBook, setShowBook] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [showSlider, setShowSlider] = useState(false);
-
+  
   useEffect (() => 
   {
     const handleResize = () => 
@@ -63,7 +63,7 @@ function App ()
   // Utilidades para el libro seleccionado
   const portada = selectedBookObj ? Object.keys(selectedBookObj.coverModules).find(p => p.includes(selectedBookObj.portadaName)) ?? undefined : undefined;
   const contraportada = selectedBookObj ? Object.keys(selectedBookObj.coverModules).find(p => p.includes(selectedBookObj.contraportadaName)) ?? undefined : undefined;
-
+  
   const paginasLibro = useMemo(() => 
   {
     if (!selectedBookObj) return [];
@@ -74,7 +74,7 @@ function App ()
     return [
       ...getOrderedImages(selectedBookObj.chapter0Modules),
       ...getOrderedImages(selectedBookObj.characterDescModules),
-      ...getOrderedImages(selectedBookObj.chapterModules).filter(p => /chapter-(0[1-9]|1[0-3])\//.test(p)),
+      ...getOrderedImages(selectedBookObj.chapterModules).filter(p => /chapter-(0[1-9]|1[0-3])/.test(p)),
       ...getOrderedImages(selectedBookObj.finalChapterModules),
       contraportada ? selectedBookObj.coverModules[contraportada]?.default : undefined
     ].filter(Boolean);
