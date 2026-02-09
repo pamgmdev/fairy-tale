@@ -64,20 +64,41 @@ function App ()
   const portada = selectedBookObj ? Object.keys(selectedBookObj.coverModules).find(p => p.includes(selectedBookObj.portadaName)) ?? undefined : undefined;
   const contraportada = selectedBookObj ? Object.keys(selectedBookObj.coverModules).find(p => p.includes(selectedBookObj.contraportadaName)) ?? undefined : undefined;
   
-  const paginasLibro = useMemo(() => 
+  const paginasLibro = useMemo (() => 
   {
     if (!selectedBookObj) return [];
+
     const getOrderedImages = (modules: Record<string, { default: string }>) =>
-      Object.keys(modules)
-        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-        .map(path => (modules[path] as { default: string }).default);
-    return [
-      ...getOrderedImages(selectedBookObj.chapter0Modules),
-      ...getOrderedImages(selectedBookObj.characterDescModules),
-      ...getOrderedImages(selectedBookObj.chapterModules).filter(p => /chapter-(0[1-9]|1[0-3])/.test(p)),
-      ...getOrderedImages(selectedBookObj.finalChapterModules),
-      contraportada ? selectedBookObj.coverModules[contraportada]?.default : undefined
-    ].filter(Boolean);
+      Object.keys (modules)
+        .sort ((a, b) => a.localeCompare (b, undefined, { numeric: true }))
+        .map (path => (modules[path] as { default: string }).default);
+
+    // 1. Obtenemos los capítulos intermedios
+    const intermediateChapters = getOrderedImages (selectedBookObj.chapterModules)
+      .filter (p => 
+      {
+        // Filtramos para que NO incluya chapter-0 (que ya va al principio)
+        // y que solo acepte carpetas que empiecen por chapter- seguido de números
+        const isChapter0 = p.includes ('chapter-0/');
+        const isChapterN = /chapter-\d+/.test (p);
+        return !isChapter0 && isChapterN;
+      });
+
+    // 2. Construimos el array final manteniendo el orden sagrado
+    const fullBook = [
+      ...getOrderedImages (selectedBookObj.chapter0Modules),
+      ...getOrderedImages (selectedBookObj.characterDescModules),
+      ...intermediateChapters,
+      ...getOrderedImages (selectedBookObj.finalChapterModules),
+    ];
+
+    // 3. Añadimos la contraportada (Cover 2) al final de todo
+    if (contraportada) 
+    {
+      fullBook.push (selectedBookObj.coverModules[contraportada]?.default);
+    }
+
+    return fullBook.filter (Boolean);
   }, [selectedBookObj, contraportada]);
 
   const bookWidth = isPortrait ? windowSize.width * 0.9 : Math.min (windowSize.width * 0.45, 500);
