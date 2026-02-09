@@ -1,7 +1,7 @@
 
 # 📖 Interactive Flipbook Project
 
-🔗 **Disponible en producción:** [https://fairy-tale-4diw.vercel.app/](https://fairy-tale-4diw.vercel.app/)
+🔗 **Disponible en producción:** [https://fairy-tale-4diw.vercel.app/](https://fairy-tale-book-1.netlify.app/)
 
 Un libro digital interactivo y responsivo construido con **React** y **Vite**. Este proyecto permite visualizar capítulos de una historia con un efecto de cambio de página realista, incluyendo navegación avanzada y portadas dinámicas.
 
