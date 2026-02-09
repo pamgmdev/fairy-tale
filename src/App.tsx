@@ -54,22 +54,45 @@ function App ()
   {
     if (!selectedBookObj) return [];
 
-    const sortedPaths = [...allPaths].sort ((a, b) => a.localeCompare (b, undefined, { numeric: true }));
+    // 1. Obtenemos todas las rutas
+    const allPaths = Object.keys (selectedBookObj.allImages);
 
-    // Filtramos para que no se repitan las portadas en el centro del libro
+    // 2. Función para extraer el número de página del nombre del archivo
+    // Esto busca el número justo antes de la extensión (ej: page-0005 -> 5)
+    const getPageNumber = (path: string) => 
+    {
+      const match = path.match (/page-(\d+)/i);
+      return match ? parseInt (match[1], 10) : 0;
+    };
+
+    // 3. Ordenamos basándonos SOLO en el número de página
+    const sortedPaths = [...allPaths].sort ((a, b) => 
+    {
+      const numA = getPageNumber (a);
+      const numB = getPageNumber (b);
+      return numA - numB;
+    });
+
+    // 4. Identificamos las portadas
+    const portadaPath = sortedPaths.find (p => p.includes (selectedBookObj.portadaName));
+    const contraPath = sortedPaths.find (p => p.includes (selectedBookObj.contraportadaName));
+
+    // 5. Filtramos las páginas interiores (quitamos portadas del cuerpo)
     const interiorPages = sortedPaths
       .filter (p => p !== portadaPath && p !== contraPath)
       .map (path => selectedBookObj.allImages[path].default);
 
+    // 6. Construimos el libro final
     const fullBook = [...interiorPages];
     
+    // La contraportada (Cover 2) SIEMPRE al final de todo
     if (contraPath) 
     {
       fullBook.push (selectedBookObj.allImages[contraPath].default);
     }
 
     return fullBook.filter (Boolean);
-  }, [selectedBookObj, allPaths, portadaPath, contraPath]);
+  }, [selectedBookObj]);
 
   const bookWidth = isPortrait ? windowSize.width * 0.9 : Math.min (windowSize.width * 0.45, 500);
   const bookHeight = isPortrait ? Math.min (windowSize.height * 0.7, 600) : Math.min (windowSize.height * 0.8, 600);
